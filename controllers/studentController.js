@@ -1,8 +1,14 @@
 const Student = require('../models/student');
 const Teacher = require('../models/teacher');
 const Database = require('../models/database');
-// acrescenta o const database
+// acrescentei o const database
+
+function createStudent(req, res) {
+  res.send('Estudante criado!');
+}
+// criei a função para criar um estudante
 
 module.exports = {
-  createStudent
+  createStudent,
 };
+// exportei a função createStudent para ser usada em outros arquivos
