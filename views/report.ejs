@@ -1,0 +1,62 @@
+<h1>Relatório de Alunos e Notas</h1>
+
+<% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<h2>Lista de Alunos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Nota</th>
+                <th>Data de Criação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% forEach(student => { %>
+                <tr>
+                    <td><%= student.id %></td>
+                    <td><%= student.name %></td>
+                    <td><%= student.grade %></td>
+                    <td><%= new Date(student.created_at).toLocaleDateString('pt-BR') %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    
+    <h3>Estatísticas</h3>
+    <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; margin-top: 20px;">
+        <p><strong>Total de Alunos:</strong> <%= students.length %></p>
+        <p><strong>Média Geral:</strong> <%= (students.reduce((sum, s) => sum + parseFloat(s.grade), 0) / students.length).toFixed(2) %></p>
+        <p><strong>Maior Nota:</strong> <%= Math.max(...students.map(s => parseFloat(s.grade))).toFixed(2) %></p>
+        <p><strong>Menor Nota:</strong> <%= Math.min(...students.map(s => parseFloat(s.grade))).toFixed(2) %></p>
+    </div>
+<% } else { %>
+    <p>Nenhum aluno cadastrado ainda.</p>
+<% } %>
+
+<h2>Lista de Professores</h2>
+<% if (teachers.length > 0) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Data de Criação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% teachers.forEach(teacher => { %>
+                <tr>
+                    <td><%= teacher.id %></td>
+                    <td><%= teacher.name %></td>
+                    <td><%= new Date(teacher.created_at).toLocaleDateString('pt-BR') %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+<% } else { %>
+    <p>Nenhum professor cadastrado ainda.</p>
+<% } %>

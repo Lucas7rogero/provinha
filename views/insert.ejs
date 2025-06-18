@@ -1,0 +1,33 @@
+<h1>Inserir Novo Aluno</h1>
+
+<% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<% if (success) { %>
+    <div class="alert alert-success"><%= success %></div>
+<% } %>
+
+<form method="POST" action="/insert">
+    <div class="form-group">
+        <label for="name">Nome do Aluno:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="grade">Nota:</label>
+        <input type="number" id="grade" name="grade" step="0.01" min="0" max="10" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="teacherId">Professor (opcional):</label>
+        <select id="teacherId" name="teacherId">
+            <option value="">Selecione um professor...</option>
+            <% teachers.forEach(teacher => { %>
+                <option value="<%= teacher.id %>"><%= teacher.name %></option>
+            <% }) %>
+        </select>
+    </div>
+    
+    <button type="submit">Salvar Aluno</button>
+</form>
