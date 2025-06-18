@@ -4,6 +4,5 @@ const Database = require('../models/database');
 // acrescenta o const database
 
 module.exports = {
-  showInsertForm,
   createStudent
 };
